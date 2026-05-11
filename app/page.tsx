@@ -45,7 +45,7 @@ export default function HomePage() {
 
         <div className="site-container relative z-10 grid min-h-[calc(100vh-7rem)] gap-12 pb-20 pt-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <Reveal className="min-w-0">
-            <h1 className="max-w-full break-words font-display text-[2rem] font-semibold leading-[1.12] md:max-w-4xl md:text-7xl md:leading-[0.98] xl:text-8xl">
+            <h1 className="max-w-full break-words font-display text-[2rem] font-semibold leading-[1.12] md:max-w-4xl md:text-6xl md:leading-[1.04] xl:text-7xl">
               <span className="block md:inline">Tudo que o seu</span>
               <span className="block md:inline"> escritório precisa</span>
               <span className="block md:inline"> em um só lugar.</span>
