@@ -1,0 +1,10 @@
+.agents/
+AGENTS.md
+CLAUDE.md
+skills-lock.json
+convex/_generated/ai/
+
+node_modules/
+.next/
+.env
+.env.*

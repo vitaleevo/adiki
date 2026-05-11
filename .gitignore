@@ -36,4 +36,9 @@ Thumbs.db
 *.key
 id_rsa*
 
-.vercel
+# local agent tooling
+.agents/
+AGENTS.md
+CLAUDE.md
+skills-lock.json
+convex/_generated/ai/
