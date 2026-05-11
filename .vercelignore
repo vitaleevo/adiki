@@ -9,3 +9,5 @@ node_modules/
 .env
 .env.*
 .backoffice-password.txt
+imagens/
+public/images/

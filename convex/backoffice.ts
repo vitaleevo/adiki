@@ -51,6 +51,20 @@ async function serializeMedia(ctx: { storage: { getUrl: (storageId: Id<"_storage
   };
 }
 
+function normalizeFilename(value: string) {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+}
+
+function findMediaUrl(mediaAssets: Array<Doc<"mediaAssets"> & { url: string | null }>, names: string[]) {
+  const normalizedNames = names.map(normalizeFilename);
+  const asset = mediaAssets.find((item) => normalizedNames.includes(normalizeFilename(item.filename)));
+
+  return asset?.url ?? "";
+}
+
 export const generateUploadUrl = mutation({
   args: { adminKey: v.string() },
   handler: async (ctx, args) => {
@@ -305,13 +319,34 @@ export const upsertSetting = mutation({
 export const publicContent = query({
   args: {},
   handler: async (ctx) => {
-    const [products, categories, blogPosts] = await Promise.all([
+    const [products, categories, blogPosts, mediaAssetDocs] = await Promise.all([
       ctx.db.query("products").withIndex("by_active_and_sort_order", (q) => q.eq("active", true)).take(MAX_ITEMS),
       ctx.db.query("categories").withIndex("by_active_and_sort_order", (q) => q.eq("active", true)).take(MAX_ITEMS),
-      ctx.db.query("blogPosts").withIndex("by_published_and_published_at", (q) => q.eq("published", true)).order("desc").take(MAX_ITEMS)
+      ctx.db.query("blogPosts").withIndex("by_published_and_published_at", (q) => q.eq("published", true)).order("desc").take(MAX_ITEMS),
+      ctx.db.query("mediaAssets").withIndex("by_status_and_uploaded_at", (q) => q.eq("status", "active")).order("desc").take(MAX_ITEMS)
     ]);
+    const mediaAssets = await Promise.all(mediaAssetDocs.map((asset) => serializeMedia(ctx, asset)));
 
     return {
+      images: {
+        hero: findMediaUrl(mediaAssets, ["Acessórios de mesa.png", "Acessorios de mesa.png"]),
+        office: findMediaUrl(mediaAssets, ["Acessórios de mesa.png", "Acessorios de mesa.png"]),
+        meeting: findMediaUrl(mediaAssets, ["Equipamentos.jpg"]),
+        logistics: findMediaUrl(mediaAssets, ["Equipamentos.jpg"]),
+        supplies: findMediaUrl(mediaAssets, ["Papelaria.png"]),
+        desk: findMediaUrl(mediaAssets, ["Tinteiros.jpg"]),
+        business: findMediaUrl(mediaAssets, ["Arquivo.jpg"]),
+        team: findMediaUrl(mediaAssets, ["Procon-divulga-pesquisa-de-preços-do-material-escolar.jpg"]),
+        archive: findMediaUrl(mediaAssets, ["Arquivo.jpg"]),
+        cleaning: findMediaUrl(mediaAssets, ["Limpeza.jpg"]),
+        equipment: findMediaUrl(mediaAssets, ["Equipamentos.jpg"]),
+        school: findMediaUrl(mediaAssets, ["Procon-divulga-pesquisa-de-preços-do-material-escolar.jpg"]),
+        ink: findMediaUrl(mediaAssets, ["Tinteiros.jpg"]),
+        paperPremium: findMediaUrl(mediaAssets, ["papel premium.webp"]),
+        operationalConsumables: findMediaUrl(mediaAssets, ["Consumíveis operacionais.jpg", "Consumiveis operacionais.jpg"]),
+        deskAccessories: findMediaUrl(mediaAssets, ["Acessórios de mesa.png", "Acessorios de mesa.png"]),
+        envelopesLabels: findMediaUrl(mediaAssets, ["Envelopes e etiquetas.webp"])
+      },
       products: await Promise.all(
         products.map(async (product) => ({
           id: product.slug,

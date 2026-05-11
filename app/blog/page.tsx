@@ -9,7 +9,7 @@ import { PageHero } from "@/components/site/page-hero";
 import { SectionHeader } from "@/components/site/section-header";
 import { Button } from "@/components/ui/button";
 import { getPublicContent } from "@/lib/public-content";
-import { imageLibrary, site } from "@/lib/site-data";
+import { site } from "@/lib/site-data";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export const revalidate = 60;
 
 export default async function BlogPage() {
-  const { blogPosts } = await getPublicContent();
+  const { blogPosts, images } = await getPublicContent();
   const categories = Array.from(new Set(blogPosts.map((post) => post.category)));
   const featured = blogPosts[0];
 
@@ -29,7 +29,7 @@ export default async function BlogPage() {
       <PageHero
         title="Conhecimento prático para escritórios mais organizados."
         description="Conteúdos fictícios realistas para reforçar autoridade, SEO e confiança em torno de compras empresariais e abastecimento de escritório."
-        image={imageLibrary.desk}
+        image={images.desk}
       />
 
       <section className="section-pad">

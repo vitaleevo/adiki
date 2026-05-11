@@ -8,7 +8,10 @@ import { CtaSection } from "@/components/site/cta-section";
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeader } from "@/components/site/section-header";
 import { Button } from "@/components/ui/button";
-import { imageLibrary, serviceProcess, services, site } from "@/lib/site-data";
+import { getPublicContent } from "@/lib/public-content";
+import { serviceProcess, services, site } from "@/lib/site-data";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Serviços",
@@ -16,13 +19,15 @@ export const metadata: Metadata = {
     "Fornecimento empresarial, distribuição, entregas programadas e contratos corporativos para material de escritório."
 };
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const { images } = await getPublicContent();
+
   return (
     <main>
       <PageHero
         title="Serviços desenhados para compras empresariais sem fricção."
         description="Apoiamos empresas com fornecimento, distribuição, entregas programadas e contratos corporativos para manter o escritório sempre operacional."
-        image={imageLibrary.logistics}
+        image={images.logistics}
       />
 
       <section className="section-pad">
@@ -67,7 +72,7 @@ export default function ServicesPage() {
           </Reveal>
           <Reveal delay={0.1} className="relative overflow-hidden rounded-[2rem]">
             <Image
-              src={imageLibrary.business}
+              src={images.business}
               alt="Equipa empresarial em planeamento de fornecimento"
               width={1200}
               height={920}

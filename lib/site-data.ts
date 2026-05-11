@@ -49,23 +49,23 @@ export const navItems = [
 ];
 
 export const imageLibrary = {
-  hero: "/images/acessorios-de-mesa.png",
-  office: "/images/acessorios-de-mesa.png",
-  meeting: "/images/equipamentos.jpg",
-  logistics: "/images/equipamentos.jpg",
-  supplies: "/images/papelaria.png",
-  desk: "/images/tinteiros.jpg",
-  business: "/images/arquivo.jpg",
-  team: "/images/material-escolar.jpg",
-  archive: "/images/arquivo.jpg",
-  cleaning: "/images/limpeza.jpg",
-  equipment: "/images/equipamentos.jpg",
-  school: "/images/material-escolar.jpg",
-  ink: "/images/tinteiros.jpg",
-  paperPremium: "/images/papel-premium.webp",
-  operationalConsumables: "/images/consumiveis-operacionais.jpg",
-  deskAccessories: "/images/acessorios-de-mesa.png",
-  envelopesLabels: "/images/envelopes-etiquetas.webp"
+  hero: "/brand/adiki-logo-gold.png",
+  office: "/brand/adiki-logo-gold.png",
+  meeting: "/brand/adiki-logo-gold.png",
+  logistics: "/brand/adiki-logo-gold.png",
+  supplies: "/brand/adiki-logo-gold.png",
+  desk: "/brand/adiki-logo-gold.png",
+  business: "/brand/adiki-logo-gold.png",
+  team: "/brand/adiki-logo-gold.png",
+  archive: "/brand/adiki-logo-gold.png",
+  cleaning: "/brand/adiki-logo-gold.png",
+  equipment: "/brand/adiki-logo-gold.png",
+  school: "/brand/adiki-logo-gold.png",
+  ink: "/brand/adiki-logo-gold.png",
+  paperPremium: "/brand/adiki-logo-gold.png",
+  operationalConsumables: "/brand/adiki-logo-gold.png",
+  deskAccessories: "/brand/adiki-logo-gold.png",
+  envelopesLabels: "/brand/adiki-logo-gold.png"
 };
 
 export const categories = [

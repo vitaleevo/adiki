@@ -14,6 +14,8 @@ dist/
 .env.*
 !.env.example
 .vercel/
+imagens/
+public/images/
 
 # logs
 npm-debug.log*

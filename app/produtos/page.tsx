@@ -5,7 +5,6 @@ import { PageHero } from "@/components/site/page-hero";
 import { ProductCatalog } from "@/components/site/product-catalog";
 import { SectionHeader } from "@/components/site/section-header";
 import { getPublicContent } from "@/lib/public-content";
-import { imageLibrary } from "@/lib/site-data";
 
 export const metadata: Metadata = {
   title: "Produtos",
@@ -16,14 +15,14 @@ export const metadata: Metadata = {
 export const revalidate = 60;
 
 export default async function ProductsPage() {
-  const { products } = await getPublicContent();
+  const { images, products } = await getPublicContent();
 
   return (
     <main>
       <PageHero
         title="Catálogo moderno para solicitar orçamento com rapidez."
         description="Explore categorias, pesquise produtos e peça uma cotação diretamente pelo WhatsApp. Sem carrinho, sem checkout, com atendimento comercial personalizado."
-        image={imageLibrary.supplies}
+        image={images.supplies}
       />
       <section className="section-pad">
         <div className="site-container">

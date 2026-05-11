@@ -5,7 +5,10 @@ import { Reveal } from "@/components/motion/reveal";
 import { ContactForm } from "@/components/site/contact-form";
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeader } from "@/components/site/section-header";
-import { contactCards, imageLibrary, site } from "@/lib/site-data";
+import { getPublicContent } from "@/lib/public-content";
+import { contactCards, site } from "@/lib/site-data";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Contato",
@@ -13,13 +16,15 @@ export const metadata: Metadata = {
     "Fale com a ADIKI ALVANIR Angola para solicitar orçamento de material gastável de escritório."
 };
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const { images } = await getPublicContent();
+
   return (
     <main>
       <PageHero
         title="Fale connosco e receba uma proposta profissional."
         description="Use o formulário ou WhatsApp para solicitar orçamento, tirar dúvidas comerciais e planear o abastecimento da sua empresa."
-        image={imageLibrary.meeting}
+        image={images.meeting}
       />
 
       <section className="section-pad">

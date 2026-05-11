@@ -11,7 +11,7 @@ import {
 import { fetchQuery } from "convex/nextjs";
 
 import { api } from "@/convex/_generated/api";
-import { blogPosts, categories, products } from "@/lib/site-data";
+import { blogPosts, categories, imageLibrary, products } from "@/lib/site-data";
 
 const iconMap: Record<string, LucideIcon> = {
   Archive,
@@ -48,6 +48,20 @@ export type PublicBlogPost = {
   image: string;
 };
 
+export type PublicImages = typeof imageLibrary;
+
+function mergePublicImages(images: Partial<Record<keyof PublicImages, string>>) {
+  const nextImages: PublicImages = { ...imageLibrary };
+
+  for (const [key, value] of Object.entries(images)) {
+    if (value && key in nextImages) {
+      nextImages[key as keyof PublicImages] = value;
+    }
+  }
+
+  return nextImages;
+}
+
 export async function getPublicContent() {
   try {
     if (!process.env.NEXT_PUBLIC_CONVEX_URL) {
@@ -57,6 +71,7 @@ export async function getPublicContent() {
     const content = await fetchQuery(api.backoffice.publicContent, {});
 
     return {
+      images: mergePublicImages(content.images),
       products:
         content.products.length > 0
           ? content.products.map((product) => ({
@@ -82,6 +97,7 @@ export async function getPublicContent() {
     };
   } catch {
     return {
+      images: imageLibrary,
       products,
       categories,
       blogPosts

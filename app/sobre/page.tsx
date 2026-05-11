@@ -7,7 +7,10 @@ import { CtaSection } from "@/components/site/cta-section";
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeader } from "@/components/site/section-header";
 import { Button } from "@/components/ui/button";
-import { imageLibrary, site, values } from "@/lib/site-data";
+import { getPublicContent } from "@/lib/public-content";
+import { site, values } from "@/lib/site-data";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Sobre nós",
@@ -15,13 +18,15 @@ export const metadata: Metadata = {
     "Conheça a ADIKI ALVANIR Angola, empresa focada no fornecimento profissional de material gastável de escritório."
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const { images } = await getPublicContent();
+
   return (
     <main>
       <PageHero
         title="Uma marca angolana preparada para servir empresas com rigor."
         description="A ADIKI ALVANIR Angola nasceu para simplificar o abastecimento de escritório com uma abordagem moderna, comercial e orientada à confiança."
-        image={imageLibrary.meeting}
+        image={images.meeting}
       />
 
       <section className="section-pad">
@@ -29,7 +34,7 @@ export default function AboutPage() {
           <Reveal className="relative">
             <div className="absolute -left-5 -top-5 h-28 w-28 rounded-full border border-[var(--brand-gold)]" />
             <Image
-              src={imageLibrary.office}
+              src={images.office}
               alt="Ambiente empresarial moderno"
               width={1100}
               height={900}

@@ -17,7 +17,6 @@ import { SectionHeader } from "@/components/site/section-header";
 import { Button } from "@/components/ui/button";
 import {
   advantages,
-  imageLibrary,
   partners,
   services,
   site,
@@ -29,13 +28,13 @@ import { getPublicContent } from "@/lib/public-content";
 export const revalidate = 60;
 
 export default async function HomePage() {
-  const { blogPosts, categories, products } = await getPublicContent();
+  const { blogPosts, categories, images, products } = await getPublicContent();
 
   return (
     <main>
       <section className="relative min-h-screen overflow-hidden bg-[var(--brand-green)] pt-28 text-white">
         <Image
-          src={imageLibrary.hero}
+          src={images.hero}
           alt="Escritório moderno abastecido com material profissional"
           fill
           sizes="100vw"
@@ -85,7 +84,7 @@ export default async function HomePage() {
             <div className="dark-card relative overflow-hidden rounded-[2rem] p-4">
               <div className="relative aspect-[4/5] overflow-hidden rounded-[1.5rem]">
                 <Image
-                  src={imageLibrary.supplies}
+                  src={images.supplies}
                   alt="Material de escritório organizado para empresas"
                   fill
                   sizes="(min-width: 1024px) 42vw, 90vw"
@@ -258,7 +257,7 @@ export default async function HomePage() {
             </Reveal>
             <Reveal delay={0.1} className="relative overflow-hidden rounded-[2rem]">
               <Image
-                src={imageLibrary.logistics}
+                src={images.logistics}
                 alt="Logística organizada para entrega de material de escritório"
                 width={1200}
                 height={820}
