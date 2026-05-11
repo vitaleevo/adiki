@@ -3,9 +3,7 @@ import { Inter, Montserrat, Poppins } from "next/font/google";
 import Script from "next/script";
 
 import "./globals.css";
-import { Footer } from "@/components/site/footer";
-import { Navbar } from "@/components/site/navbar";
-import { WhatsAppFloat } from "@/components/site/whatsapp-float";
+import { SiteChrome } from "@/components/site/site-chrome";
 import { site } from "@/lib/site-data";
 
 const inter = Inter({
@@ -97,10 +95,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
-        <Navbar />
-        {children}
-        <Footer />
-        <WhatsAppFloat />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );

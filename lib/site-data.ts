@@ -27,7 +27,7 @@ export const site = {
   shortName: "ADIKI ALVANIR",
   description:
     "Comércio e distribuição de material gastável de escritório para empresas, instituições e equipas em Angola.",
-  url: "https://adiki-alvanir.co.ao",
+  url: "https://adikialvanirangola.com",
   phone: "+244 923 000 000",
   whatsapp: "244923000000",
   email: "comercial@adikialvanir.co.ao",

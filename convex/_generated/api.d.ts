@@ -8,6 +8,7 @@
  * @module
  */
 
+import type * as backoffice from "../backoffice.js";
 import type * as leads from "../leads.js";
 
 import type {
@@ -17,6 +18,7 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  backoffice: typeof backoffice;
   leads: typeof leads;
 }>;
 

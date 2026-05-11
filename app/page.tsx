@@ -17,18 +17,20 @@ import { SectionHeader } from "@/components/site/section-header";
 import { Button } from "@/components/ui/button";
 import {
   advantages,
-  blogPosts,
-  categories,
   imageLibrary,
   partners,
-  products,
   services,
   site,
   testimonials,
   warehouseStats
 } from "@/lib/site-data";
+import { getPublicContent } from "@/lib/public-content";
 
-export default function HomePage() {
+export const revalidate = 60;
+
+export default async function HomePage() {
+  const { blogPosts, categories, products } = await getPublicContent();
+
   return (
     <main>
       <section className="relative min-h-screen overflow-hidden bg-[var(--brand-green)] pt-28 text-white">

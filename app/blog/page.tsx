@@ -8,7 +8,8 @@ import { CtaSection } from "@/components/site/cta-section";
 import { PageHero } from "@/components/site/page-hero";
 import { SectionHeader } from "@/components/site/section-header";
 import { Button } from "@/components/ui/button";
-import { blogPosts, imageLibrary, site } from "@/lib/site-data";
+import { getPublicContent } from "@/lib/public-content";
+import { imageLibrary, site } from "@/lib/site-data";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -16,7 +17,10 @@ export const metadata: Metadata = {
     "Artigos sobre gestão de escritório, material gastável, compras empresariais, logística e produtividade."
 };
 
-export default function BlogPage() {
+export const revalidate = 60;
+
+export default async function BlogPage() {
+  const { blogPosts } = await getPublicContent();
   const categories = Array.from(new Set(blogPosts.map((post) => post.category)));
   const featured = blogPosts[0];
 

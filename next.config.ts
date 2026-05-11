@@ -9,9 +9,11 @@ const contentSecurityPolicy = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob:",
+  "img-src 'self' data: blob: https://*.convex.cloud https://*.convex.site",
   "font-src 'self' data:",
-  `connect-src 'self'${isDev ? " ws://localhost:* http://localhost:* ws://127.0.0.1:* http://127.0.0.1:*" : ""}`,
+  `connect-src 'self' https://*.convex.cloud https://*.convex.site${
+    isDev ? " ws://localhost:* http://localhost:* ws://127.0.0.1:* http://127.0.0.1:*" : ""
+  }`,
   "frame-src https://www.google.com https://maps.google.com",
   "object-src 'none'",
   "base-uri 'self'",
@@ -59,6 +61,18 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "*.convex.cloud"
+      },
+      {
+        protocol: "https",
+        hostname: "*.convex.site"
+      }
+    ]
+  },
   turbopack: {
     root: projectRoot
   },

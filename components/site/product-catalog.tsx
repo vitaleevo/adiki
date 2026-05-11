@@ -6,21 +6,24 @@ import { useMemo, useState } from "react";
 import { ProductCard } from "@/components/site/cards";
 import { Input } from "@/components/ui/input";
 import { products } from "@/lib/site-data";
+import type { PublicProduct } from "@/lib/public-content";
 import { cn } from "@/lib/utils";
 
-const categories = ["Todos", ...Array.from(new Set(products.map((product) => product.category)))];
-
-export function ProductCatalog() {
+export function ProductCatalog({ initialProducts = products }: { initialProducts?: PublicProduct[] }) {
   const [category, setCategory] = useState("Todos");
   const [query, setQuery] = useState("");
+  const categories = useMemo(
+    () => ["Todos", ...Array.from(new Set(initialProducts.map((product) => product.category)))],
+    [initialProducts]
+  );
 
   const filteredProducts = useMemo(() => {
-    return products.filter((product) => {
+    return initialProducts.filter((product) => {
       const categoryMatches = category === "Todos" || product.category === category;
       const text = `${product.name} ${product.category} ${product.description}`.toLowerCase();
       return categoryMatches && text.includes(query.toLowerCase());
     });
-  }, [category, query]);
+  }, [category, initialProducts, query]);
 
   return (
     <div className="space-y-8">

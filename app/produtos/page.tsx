@@ -4,6 +4,7 @@ import { CtaSection } from "@/components/site/cta-section";
 import { PageHero } from "@/components/site/page-hero";
 import { ProductCatalog } from "@/components/site/product-catalog";
 import { SectionHeader } from "@/components/site/section-header";
+import { getPublicContent } from "@/lib/public-content";
 import { imageLibrary } from "@/lib/site-data";
 
 export const metadata: Metadata = {
@@ -12,7 +13,11 @@ export const metadata: Metadata = {
     "Catálogo visual de material gastável de escritório, papelaria, tinteiros, arquivo, limpeza e equipamentos."
 };
 
-export default function ProductsPage() {
+export const revalidate = 60;
+
+export default async function ProductsPage() {
+  const { products } = await getPublicContent();
+
   return (
     <main>
       <PageHero
@@ -28,7 +33,7 @@ export default function ProductsPage() {
             description="Use os filtros para encontrar linhas de produto. O orçamento final é tratado pela equipa comercial, com quantidades e condições adequadas ao seu pedido."
           />
           <div className="mt-10">
-            <ProductCatalog />
+            <ProductCatalog initialProducts={products} />
           </div>
         </div>
       </section>
