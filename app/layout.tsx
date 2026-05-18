@@ -80,8 +80,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     email: site.email,
     address: {
       "@type": "PostalAddress",
-      streetAddress: site.address,
-      addressLocality: "Luanda",
+      streetAddress: "Avenida 4 de Fevereiro, Nº 23",
+      addressLocality: "Ingombota",
+      addressRegion: "Luanda",
       addressCountry: "AO"
     },
     sameAs: Object.values(site.socials)

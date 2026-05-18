@@ -28,10 +28,11 @@ export const site = {
   description:
     "Comércio e distribuição de material gastável de escritório para empresas, instituições e equipas em Angola.",
   url: "https://adikialvanirangola.com",
-  phone: "+244 923 000 000",
-  whatsapp: "244923000000",
+  phone: "+244 936 080 173",
+  phone2: "+244 936 079 317",
+  whatsapp: "244936080173",
   email: "comercial@adikialvanir.co.ao",
-  address: "Rua Rainha Ginga, Maianga, Luanda, Angola",
+  address: "Avenida 4 de Fevereiro, Bairro Ingombota, Nº 23, Município de Ingombota, Luanda, Angola",
   socials: {
     facebook: "https://facebook.com",
     instagram: "https://instagram.com",
@@ -292,7 +293,7 @@ export const blogPosts = [
 
 export const contactCards = [
   { label: "WhatsApp", value: site.phone, href: `https://wa.me/${site.whatsapp}`, icon: MessageCircle },
-  { label: "Telefone", value: site.phone, href: `tel:${site.phone.replace(/\s/g, "")}`, icon: Phone },
+  { label: "Telefone", value: `${site.phone} / ${site.phone2}`, href: `tel:${site.phone.replace(/\s/g, "")}`, icon: Phone },
   { label: "Email", value: site.email, href: `mailto:${site.email}`, icon: Mail },
   { label: "Endereço", value: site.address, href: "https://maps.google.com/?q=Luanda%20Angola", icon: MapPin }
 ];
